@@ -1,0 +1,42 @@
+description: TMP temperature sensor
+
+compatible: "zephyr,custom-tmp117"
+
+include: [sensor-device.yaml, i2c-device.yaml]
+
+properties:
+  odr:
+    type: int
+    required: false
+    default: 1000000
+    description: Output data rate in microhertz (uHz)
+
+  oversampling:
+    type: int
+    required: false
+    default: 1
+    description: Oversampling value (1, 8, 32, or 64)
+
+  alert-polarity:
+    type: boolean
+    required: false
+    default: false
+    description: Alert pin polarity (false = active low, true = active high)
+
+  alert-mode:
+    type: boolean
+    required: false
+    default: false
+    description: Alert mode (false = alert mode, true = therm mode)
+
+  alert-dr-sel:
+    type: boolean
+    required: false
+    default: false
+    description: Alert pin select (false = alert, true = data ready)
+
+  store-attr-values:
+    type: boolean
+    required: false
+    default: false
+    description: Store attribute values in EEPROM

@@ -1,0 +1,6 @@
+config CUSTOM_TMP117
+	bool "Custom TMP117 sensor"
+	default y if DT_HAS_ZEPHYR_CUSTOM_TMP117_ENABLED
+	select I2C
+	help
+		Enable custom tmp117 driver

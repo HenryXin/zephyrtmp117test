@@ -1,0 +1,3 @@
+if SENSOR
+rsource "custom_tmp117/Kconfig"
+endif

@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2024
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/pinctrl/stm32-pinctrl.h>
+
+&pinctrl {
+	i2c1_scl_pb6: i2c1_scl_pb6 {
+		pinmux = <STM32_PINMUX('B', 6, AF4)>;
+		bias-pull-up;
+		drive-open-drain;
+	};
+
+	i2c1_sda_pb7: i2c1_sda_pb7 {
+		pinmux = <STM32_PINMUX('B', 7, AF4)>;
+		bias-pull-up;
+		drive-open-drain;
+	};
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+
+	tmp117@48 {
+		compatible = "zephyr,custom-tmp117";
+		reg = <0x48>;
+		label = "TMP117";
+		/* Output data rate: 1 Hz (1000000 uHz) */
+		odr = <1000000>;
+		/* Oversampling: 1 sample (no averaging) */
+		oversampling = <1>;
+		/* Alert pin polarity: active low (false) */
+		alert-polarity = <0>;
+		/* Alert mode: alert mode (false), not therm mode */
+		alert-mode = <0>;
+		/* Alert pin select: alert (false), not data ready */
+		alert-dr-sel = <0>;
+		/* Store attribute values in EEPROM: disabled (false) */
+		store-attr-values = <0>;
+	};
+};
+

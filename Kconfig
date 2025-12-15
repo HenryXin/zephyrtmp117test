@@ -1,0 +1,7 @@
+mainmenu "Custom TMP117 Driver Test Application Configuration"
+
+source "Kconfig.zephyr"
+
+# Include custom driver module Kconfig
+rsource "custom_dirver_module/drivers/Kconfig"
+
